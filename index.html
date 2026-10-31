@@ -1646,6 +1646,7 @@ html, body { background: #3a6ea5; }
         }
       }
     }
+    wins.slice().forEach(closeWin);                  /* solo una carpeta abierta a la vez */
     var w = el('section', 'win', winHTML(p));
     w.setAttribute('role', 'dialog'); w.setAttribute('aria-label', p.title);
     var W = desk.clientWidth, H = desk.clientHeight, bh = bar.offsetHeight, n = wins.length % 6;
@@ -1756,6 +1757,7 @@ html, body { background: #3a6ea5; }
   function openCV() {
     hideMenu();
     for (var i = 0; i < wins.length; i++) if (wins[i].id === 'cv') { raise(wins[i].el); return; }
+    wins.slice().forEach(closeWin);
     var lang = curLang;
     var w = el('section', 'win cvwin',
       '<div class="tb"><button class="dot" type="button" data-act="close" aria-label="Cerrar ventana"></button><button class="dot m" type="button" data-act="close" aria-label="Minimizar ventana"></button><button class="dot z" type="button" data-act="zoom" aria-label="Ampliar o reducir ventana"></button>'

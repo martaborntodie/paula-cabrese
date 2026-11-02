@@ -426,6 +426,7 @@ html, body { background: #3a6ea5; }
 .win.full .wb.vid video { object-fit: contain; }
 .wb.float { display: block !important; position: relative; padding: 0; background: #fff; overflow: hidden; }
 .wb.float .fl { position: absolute; display: block; height: auto; max-width: none; cursor: grab; touch-action: none; user-select: none; -webkit-user-drag: none; transform: rotate(var(--r, 0deg)); filter: drop-shadow(0 6px 9px rgba(0,0,0,.18)); transition: filter .15s; }
+.wb.float .fl.raw, .wb.float .fl.raw.drag { mix-blend-mode: multiply; filter: none; }
 .wb.float .fl.drag { cursor: grabbing; filter: drop-shadow(0 14px 16px rgba(0,0,0,.28)); }
 @keyframes flotA { 0%, 100% { translate: 0 0; rotate: 0deg; } 25% { translate: 7px -11px; rotate: 1.6deg; } 50% { translate: -4px -5px; rotate: -1.2deg; } 75% { translate: -8px 7px; rotate: 1deg; } }
 @keyframes flotB { 0%, 100% { translate: 0 0; rotate: 0deg; } 30% { translate: -9px 6px; rotate: -1.8deg; } 60% { translate: 6px 10px; rotate: 1.2deg; } 80% { translate: 3px -7px; rotate: -.8deg; } }
@@ -766,7 +767,7 @@ html, body { background: #3a6ea5; }
     { id: 'alineo', name: 'Alineo Studio', title: 'Alineo Studio', role: '', c: '#FFFFFF', d: '#C9C9CF', colw: 240,
       kw: 'alineo studio madrid fashion week hune', kids: ['mermaid', 'hune'], text: [], facts: [], pics: [] },
     { id: 'acero', name: 'Acero', title: 'Acero', role: '', c: '#FFFFFF', d: '#C9C9CF', colw: 270,
-      kw: 'acero magazine joyas piezas', text: [], facts: [], pics: [], float: [['ac1','Acero 1',4,5,30,-5],['ac2','Acero 2',62,4,28,6],['ac3','Acero 3',44,12,6.8,-3],['ac4','Acero 4',6,38,16,9],['ac5','Acero 5',66,43,22,-6],['ac6','Acero 6',30,81,36,-2]] },
+      kw: 'acero magazine joyas piezas', text: [], facts: [], pics: [], float: [['ac1','Acero 1',4,5,30,-5],['ac2','Acero 2',62,4,28,6],['ac3','Acero 3',35,6,30,-2,1],['ac4','Acero 4',6,38,16,9],['ac5','Acero 5',66,43,22,-6],['ac6','Acero 6',30,81,36,-2]] },
     { id: 'metgala', name: 'Met Gala', title: 'Met Gala', role: '', c: '#FFFFFF', d: '#C9C9CF', colw: 270, video: 'metgala.mp4', gif: true, vr: 1444 / 1080,
       kw: 'met gala', text: [], facts: [], pics: [] },
     { id: 'moodboards', name: 'Moodboards', title: 'Moodboards', role: '', paint: true, c: '#FFFFFF', d: '#C9C9CF', colw: 270,
@@ -1134,7 +1135,7 @@ html, body { background: #3a6ea5; }
   }
   function floatBody(p) {
     return '<div class="wb float">' + p.float.map(function (f) {
-      return '<img class="fl" draggable="false" src="' + IMGS[f[0]] + '" alt="' + esc(f[1]) + '" style="left:' + f[2] + '%;top:' + f[3] + '%;width:' + f[4] + '%;--r:' + f[5] + 'deg">';
+      return '<img class="fl' + (f[6] ? ' raw' : '') + '" draggable="false" src="' + IMGS[f[0]] + '" alt="' + esc(f[1]) + '" style="left:' + f[2] + '%;top:' + f[3] + '%;width:' + f[4] + '%;--r:' + f[5] + 'deg">';
     }).join('') + '</div>';
   }
   function wireFloat(fb) {

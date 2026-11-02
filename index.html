@@ -563,6 +563,7 @@ html, body { background: #3a6ea5; }
 .mag .mhero { position: relative; width: calc(100% - 28px); max-width: min(800px, calc((100vh - 235px) * 1.337)); margin: 14px auto; background: #fff; container-type: inline-size; border: 2px solid #7f9db9; box-shadow: 3px 3px 0 rgba(0,0,0,.25); }
 .mag .mhero video { display: block; width: 100%; height: auto; aspect-ratio: 1444 / 1080; object-fit: contain; background: #fff; }
 .mag .mcov { position: absolute; left: 0; right: 0; top: 0; padding: clamp(12px, 2.4cqw, 28px) 12px 0; text-align: center; pointer-events: none; }
+.mag .mcov, .mag .msticker, .mag .mpop, .mag .mclick { display: none !important; }
 .mag .mcov h1 { margin: 0; font: 400 clamp(34px, 8.4cqw, 104px)/.95 var(--tm); color: var(--red); letter-spacing: .02em; text-transform: uppercase; text-shadow: 0 0 6px #fff, 0 0 12px #fff; }
 .mag .mby { margin-top: 6px; font: 700 12px var(--xs); letter-spacing: .12em; text-transform: uppercase; color: #003399; text-shadow: 0 0 4px #fff; }
 .mag .msticker { position: absolute; right: clamp(10px, 3cqw, 40px); top: 46%; transform: rotate(-3deg); text-align: right; font: 400 clamp(26px, 6cqw, 74px)/.92 var(--im); color: var(--red); text-transform: uppercase; text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000; letter-spacing: .01em; pointer-events: none; }
@@ -582,7 +583,7 @@ html, body { background: #3a6ea5; }
 .mag .msh { display: flex; align-items: baseline; gap: clamp(10px, 2cqw, 22px); margin-bottom: 22px; flex-wrap: wrap; }
 .mag .mn { font: 400 clamp(30px, 5cqw, 60px)/1 var(--im); color: var(--red); text-shadow: 2px 2px 0 #000; }
 .mag .mk { margin-bottom: 2px; font: 700 11px var(--xs); letter-spacing: .14em; text-transform: uppercase; color: #003399; }
-.mag h2 { margin: 0; font: 400 clamp(26px, 5cqw, 56px)/1 var(--tm); color: var(--red); letter-spacing: .02em; text-transform: uppercase; }
+.mag h2 { margin: 0; font: 400 clamp(26px, 5cqw, 56px)/1 var(--im); color: var(--red); letter-spacing: .02em; text-transform: uppercase; }
 .mag .mcols { columns: 2 300px; column-gap: clamp(20px, 3.5cqw, 40px); margin: 22px 0; text-align: justify; hyphens: auto; -webkit-hyphens: auto; font-size: 13.5px; line-height: 1.65; }
 .mag .mcols.one { columns: 1; max-width: 70ch; }
 .mag .mcols p { margin: 0 0 1em; }
@@ -602,7 +603,7 @@ html, body { background: #3a6ea5; }
 .mag .mart { margin: 30px 0 0; border: 2px outset #fff; background: #ece9d8; padding: 8px 8px 16px; }
 .mag .mart figcaption { padding: 8px 4px 0; font: 400 11px/1.45 var(--xs); color: #333; }
 .mag .mak { margin-top: 14px; padding: 0 4px; font: 700 11px var(--xs); letter-spacing: .14em; text-transform: uppercase; color: #003399; }
-.mag .mart h3 { margin: 6px 0 8px; padding: 0 4px; font: 400 clamp(22px, 3.2cqw, 38px)/1.05 var(--tm); color: var(--lnk); text-decoration: underline; }
+.mag .mart h3 { margin: 6px 0 8px; padding: 0 4px; font: 400 clamp(22px, 3.2cqw, 38px)/1.05 var(--im); color: var(--lnk); text-transform: uppercase; }
 .mag .mq { margin: 0; padding: 0 4px; font: italic 400 15px/1.5 var(--tm); }
 .mag .mbl { padding: 10px 4px 0; font: 400 11px/1.6 var(--xs); color: #333; }
 .mag .mmos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 26px 0; }

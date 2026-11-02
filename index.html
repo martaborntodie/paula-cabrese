@@ -427,6 +427,8 @@ html, body { background: #3a6ea5; }
 .wb.float { display: block !important; position: relative; padding: 0; background: #fff; overflow: hidden; }
 .wb.float .fl { position: absolute; display: block; height: auto; max-width: none; cursor: grab; touch-action: none; user-select: none; -webkit-user-drag: none; transform: rotate(var(--r, 0deg)); filter: drop-shadow(0 6px 9px rgba(0,0,0,.18)); transition: filter .15s; }
 .wb.float .fl.raw, .wb.float .fl.raw.drag { mix-blend-mode: multiply; filter: none; }
+.wb.float .aph { position: absolute; z-index: 9000; height: auto; padding: 6px 6px 6px; background: #fff; box-shadow: 0 10px 28px rgba(0,0,0,.4); transform: rotate(var(--r, 0deg)); cursor: pointer; animation: aphIn .28s ease-out; }
+@keyframes aphIn { from { opacity: 0; transform: rotate(var(--r, 0deg)) scale(.82); } to { opacity: 1; transform: rotate(var(--r, 0deg)) scale(1); } }
 .wb.float .fl.drag { cursor: grabbing; filter: drop-shadow(0 14px 16px rgba(0,0,0,.28)); }
 @keyframes flotA { 0%, 100% { translate: 0 0; rotate: 0deg; } 25% { translate: 7px -11px; rotate: 1.6deg; } 50% { translate: -4px -5px; rotate: -1.2deg; } 75% { translate: -8px 7px; rotate: 1deg; } }
 @keyframes flotB { 0%, 100% { translate: 0 0; rotate: 0deg; } 30% { translate: -9px 6px; rotate: -1.8deg; } 60% { translate: 6px 10px; rotate: 1.2deg; } 80% { translate: 3px -7px; rotate: -.8deg; } }
@@ -1233,6 +1235,22 @@ html, body { background: #3a6ea5; }
       return '<img class="fl' + (f[6] ? ' raw' : '') + '" draggable="false" src="' + IMGS[f[0]] + '" alt="' + esc(f[1]) + '" style="left:' + f[2] + '%;top:' + f[3] + '%;width:' + f[4] + '%;--r:' + f[5] + 'deg">';
     }).join('') + '</div>';
   }
+  var ACERO_PICS = [1, 2, 3, 4, 5, 6, 7, 8].map(function (n) { return 'img/acero/' + n + '.webp'; }), aceroLast = -1;
+  function showPhoto(fb, ev, r) {
+    var i; do { i = Math.floor(Math.random() * ACERO_PICS.length); } while (i === aceroLast && ACERO_PICS.length > 1);
+    aceroLast = i;
+    var old = fb.querySelectorAll('.aph'); if (old.length >= 3) old[0].remove();
+    var f = document.createElement('img'); f.className = 'aph'; f.src = ACERO_PICS[i]; f.alt = ''; f.draggable = false;
+    var wPct = 22 + Math.random() * 6, hPct = wPct * 1.3 * r.width / r.height;
+    var cx = (ev.clientX - r.left) / r.width * 100, cy = (ev.clientY - r.top) / r.height * 100;
+    f.style.width = wPct + '%';
+    f.style.left = clamp(cx - wPct / 2 + (Math.random() * 24 - 12), 1, 99 - wPct) + '%';
+    f.style.top = clamp(cy - hPct / 2 + (Math.random() * 24 - 12), 1, Math.max(1, 99 - hPct)) + '%';
+    f.style.setProperty('--r', (Math.random() * 8 - 4).toFixed(1) + 'deg');
+    f.addEventListener('pointerdown', function (e) { e.stopPropagation(); });
+    f.addEventListener('click', function (e) { e.stopPropagation(); f.remove(); });
+    fb.appendChild(f);
+  }
   function wireFloat(fb) {
     var z = 10;
     fb.addEventListener('pointerdown', function (e) {
@@ -1245,7 +1263,8 @@ html, body { background: #3a6ea5; }
         im.style.left = clamp(l0 + (ev.clientX - sx) / r.width * 100, -8, 92) + '%';
         im.style.top = clamp(t0 + (ev.clientY - sy) / r.height * 100, -8, 92) + '%';
       }
-      function up() { im.classList.remove('drag'); im.removeEventListener('pointermove', mv); im.removeEventListener('pointerup', up); im.removeEventListener('pointercancel', up); }
+      var moved = false;
+      function up(ev) { im.classList.remove('drag'); if (Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) < 6) showPhoto(fb, ev, r); im.removeEventListener('pointermove', mv); im.removeEventListener('pointerup', up); im.removeEventListener('pointercancel', up); }
       im.addEventListener('pointermove', mv); im.addEventListener('pointerup', up); im.addEventListener('pointercancel', up);
     });
   }

@@ -546,7 +546,7 @@ html, body { background: #3a6ea5; }
 #wall3 { position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0; background: url("img/wall-blink.webp") center top / cover no-repeat; }
 
 /* ---------- Met Gala: early-2000s Windows XP web aesthetic ---------- */
-.wb.mag { display: block !important; position: relative; padding: 0; overflow-x: hidden; overflow-y: auto; background: #fff; color: #000; container-type: inline-size; font: 400 13px/1.6 Tahoma, Verdana, "XP Sans", sans-serif; --tm: "Times New Roman", Times, serif; --im: Impact, "Arial Narrow", "Haettenschweiler", "XP Sans", sans-serif; --xs: Tahoma, Verdana, "XP Sans", sans-serif; --red: #c40000; --lnk: #0000ee; }
+.wb.mag { display: block !important; position: relative; padding: 0; overflow-x: hidden; overflow-y: auto; background: #fff; color: #000; container-type: inline-size; font: 400 13px/1.6 Tahoma, Verdana, "XP Sans", sans-serif; --tm: "Times New Roman", Times, serif; --im: Impact, "Haettenschweiler", "Arial Black", "XP Sans", sans-serif; --xs: Tahoma, Verdana, "XP Sans", sans-serif; --red: #c40000; --lnk: #0000ee; }
 .wb.mag * { box-sizing: border-box; }
 .mag .mmenu { position: sticky; top: 0; z-index: 32; display: flex; gap: 2px; padding: 2px 4px; background: #ece9d8; border-bottom: 1px solid #aca899; font: 400 12px var(--xs); color: #000; }
 .mag .mmenu span { padding: 2px 8px; }
@@ -581,9 +581,9 @@ html, body { background: #3a6ea5; }
 .mag .ms { padding: clamp(28px, 5cqw, 64px) clamp(16px, 5cqw, 64px); border-top: 3px double #7f9db9; }
 .mag #mg-concepto, .mag #mg-beauty { background: linear-gradient(#bcd6ff, #e8f1ff 70%); }
 .mag .msh { display: flex; align-items: baseline; gap: clamp(10px, 2cqw, 22px); margin-bottom: 22px; flex-wrap: wrap; }
-.mag .mn { font: 400 clamp(30px, 5cqw, 60px)/1 var(--im); color: var(--red); text-shadow: 2px 2px 0 #000; }
+.mag .mn { -webkit-text-stroke: 2px currentColor; font-weight: 900; font: 400 clamp(30px, 5cqw, 60px)/1 var(--im); color: var(--red); text-shadow: 2px 2px 0 #000; }
 .mag .mk { margin-bottom: 2px; font: 700 11px var(--xs); letter-spacing: .14em; text-transform: uppercase; color: #003399; }
-.mag h2 { -webkit-text-stroke: 1.5px currentColor; font-weight: 900; margin: 0; font: 400 clamp(26px, 5cqw, 56px)/1 var(--im); color: var(--red); letter-spacing: .02em; text-transform: uppercase; }
+.mag h2 { -webkit-text-stroke: 3px currentColor; paint-order: stroke fill; font-weight: 900; margin: 0; font: 400 clamp(26px, 5cqw, 56px)/1 var(--im); color: var(--red); letter-spacing: .02em; text-transform: uppercase; }
 .mag .mcols { columns: 2 300px; column-gap: clamp(20px, 3.5cqw, 40px); margin: 22px 0; text-align: justify; hyphens: auto; -webkit-hyphens: auto; font-size: 13.5px; line-height: 1.65; }
 .mag .mcols.one { columns: 1; max-width: 70ch; }
 .mag .mcols p { margin: 0 0 1em; }
@@ -603,7 +603,7 @@ html, body { background: #3a6ea5; }
 .mag .mart { margin: 30px 0 0; border: 2px outset #fff; background: #ece9d8; padding: 8px 8px 16px; }
 .mag .mart figcaption { padding: 8px 4px 0; font: 400 11px/1.45 var(--xs); color: #333; }
 .mag .mak { margin-top: 14px; padding: 0 4px; font: 700 11px var(--xs); letter-spacing: .14em; text-transform: uppercase; color: #003399; }
-.mag .mart h3 { -webkit-text-stroke: 1px currentColor; margin: 6px 0 8px; padding: 0 4px; font: 400 clamp(22px, 3.2cqw, 38px)/1.05 var(--im); color: var(--lnk); text-transform: uppercase; }
+.mag .mart h3 { -webkit-text-stroke: 2px currentColor; font-weight: 900; margin: 6px 0 8px; padding: 0 4px; font: 400 clamp(22px, 3.2cqw, 38px)/1.05 var(--im); color: var(--lnk); text-transform: uppercase; }
 .mag .mq { margin: 0; padding: 0 4px; font: italic 400 15px/1.5 var(--tm); }
 .mag .mbl { padding: 10px 4px 0; font: 400 11px/1.6 var(--xs); color: #333; }
 .mag .mmos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 26px 0; }

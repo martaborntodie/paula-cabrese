@@ -471,10 +471,6 @@ html, body { background: #3a6ea5; }
 .pnt .parea { flex: 1; min-width: 0; padding: 3px; background: #808080; display: flex; }
 .pnt .psheet { position: relative; flex: 1; min-width: 0; background: #fff; overflow: hidden; border: 1px solid #404040; }
 .pnt .pimgs { position: absolute; inset: 0; }
-.pnt .pinvite { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 24px; text-align: center; pointer-events: none; color: #9a9aa4; }
-.pnt .pinvite b { font: 400 clamp(26px, 4.4cqw, 54px)/1 Impact, "Arial Narrow", sans-serif; text-transform: uppercase; letter-spacing: .02em; }
-.pnt .pinvite span { max-width: 36ch; font: 400 13px/1.5 Tahoma, Verdana, sans-serif; }
-.pnt .psheet:has(.pimgs > *) .pinvite { display: none; }
 .pnt .pcv { position: absolute; left: 0; top: 0; touch-action: none; }
 .pnt.t-move .pcv { pointer-events: none; }
 .pnt:not(.t-move) .pimgs, .pnt:not(.t-move) .psel { pointer-events: none; }
@@ -515,7 +511,7 @@ html, body { background: #3a6ea5; }
 .pnt .pstat { flex: none; display: flex; padding: 2px 4px; border-top: 1px solid #aca899; background: #ece9d8; }
 .pnt .pstat span { padding: 1px 5px; border: 1px solid #808080; border-color: #808080 #fff #fff #808080; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .pnt .pstat .ps1 { flex: 1; min-width: 0; }
-.pnt .pstat .ps2 { flex: none; width: 74px; margin-left: 3px; }
+.pnt .pstat .ps2 { flex: none; width: min(46%, 400px); margin-left: 3px; }
 .win.full .pnt .pmain, .pnt.narrow .pmain { flex-direction: column; }
 .win.full .pnt .ptools, .pnt.narrow .ptools { width: auto; flex-direction: row; align-items: center; padding: 3px; border-right: 0; border-bottom: 1px solid #aca899; overflow-x: auto; overflow-y: hidden; }
 .win.full .pnt .psz, .pnt.narrow .psz { flex-direction: row; min-height: 0; }
@@ -1296,7 +1292,7 @@ html, body { background: #3a6ea5; }
       + '<div class="pmain"><div class="ptools"><div class="ptg">'
       + PTOOLS.map(function (t) { return '<button class="pt' + (t[0] === 'move' ? ' on' : '') + '" type="button" data-t="' + t[0] + '" title="' + t[1] + '" aria-label="' + t[1] + '"><svg viewBox="0 0 16 16" aria-hidden="true">' + t[2] + '</svg></button>'; }).join('')
       + '</div><div class="psz">' + PSIZES.map(function (s, i) { return '<button type="button" data-s="' + s + '" style="--lw:' + Math.max(1, s / 2) + 'px" aria-label="Grosor ' + s + '"' + (s === 3 ? ' class="on"' : '') + '><i style="height:' + Math.max(1, s / 2) + 'px"></i></button>'; }).join('') + '</div></div>'
-      + '<div class="parea"><div class="psheet"><div class="pinvite"><b>Construye tu propio moodboard</b><span>Elige imágenes del panel, arrástralas al lienzo y juega con ellas: muévelas, gíralas, dibuja encima. Guárdalo cuando te guste.</span></div><div class="pimgs"></div><canvas class="pcv"></canvas>'
+      + '<div class="parea"><div class="psheet"><div class="pimgs"></div><canvas class="pcv"></canvas>'
       + '<div class="psel" hidden><b data-h="tl"></b><b data-h="tr"></b><b data-h="bl"></b><b data-h="br"></b><b data-h="rot"></b></div>'
       + '<div class="pitb" hidden>'
       + '<button type="button" data-a="rl" title="Girar a la izquierda">↺</button><button type="button" data-a="rr" title="Girar a la derecha">↻</button>'
@@ -1310,7 +1306,7 @@ html, body { background: #3a6ea5; }
       + '<div class="ppal"><div class="pcur"><i class="b" style="background:#fff"></i><i class="f" style="background:#000"></i></div><div class="pcols">'
       + PCOLS.map(function (c) { return '<button type="button" data-c="' + c + '" style="background:' + c + '" aria-label="Color ' + c + '"></button>'; }).join('')
       + '</div></div>'
-      + '<div class="pstat"><span class="ps1">' + PHINT.move + '</span><span class="ps2"></span></div></div>';
+      + '<div class="pstat"><span class="ps1">' + PHINT.move + '</span><span class="ps2">Construye tu moodboard: elige imágenes del panel y arrástralas al lienzo.</span></div></div>';
   }
 
   function wirePaint(w) {

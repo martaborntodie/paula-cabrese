@@ -558,7 +558,6 @@ html, body { background: #3a6ea5; }
   <aside id="note">
     <div class="ntb">Paula Calabrese</div>
     <div class="nbody">
-      <h1>Paula<br>Calabrese</h1>
       <p>Fashion Styling, Creative &amp; Art Direction and Fashion Communication</p>
       <p class="hint" id="hint">Abre las carpetas · clic derecho para más</p>
     </div>
@@ -1022,7 +1021,7 @@ html, body { background: #3a6ea5; }
 
   function fitNote() {
     /* shrink the name until its longest line fits inside the note, even if the web font has not loaded */
-    var h = $('h1', note), size, guard = 40;
+    var h = $('h1', note), size, guard = 40; if (!h) return;
     h.style.fontSize = '';
     h.style.display = 'inline-block'; h.style.whiteSpace = 'nowrap';
     size = parseFloat(getComputedStyle(h).fontSize);

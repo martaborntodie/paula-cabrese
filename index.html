@@ -219,7 +219,7 @@ html, body { background: #3a6ea5; }
 #bar { display: none; }
 
 /* sticky note -> small XP window */
-#note { transform: none; padding: 0 3px 3px; background: #0a58e0; border-radius: 8px 8px 0 0; box-shadow: 3px 4px 12px rgba(0,0,0,.45); width: clamp(220px, 23vw, 300px); }
+#note { cursor: pointer; transform: none; padding: 0 3px 3px; background: #0a58e0; border-radius: 8px 8px 0 0; box-shadow: 3px 4px 12px rgba(0,0,0,.45); width: clamp(220px, 23vw, 300px); }
 #note::before { display: none; }
 #note .ntb { height: 26px; margin: 0 -3px; padding: 0 9px; display: flex; align-items: center; border-radius: 8px 8px 0 0; color: #fff; font: 700 13px/1 var(--tt); text-shadow: 1px 1px #0f1089; background: var(--luna); }
 #note .nbody { background: #ece9d8; padding: 14px 14px 12px; }
@@ -2112,7 +2112,7 @@ html, body { background: #3a6ea5; }
   trash.addEventListener('click', function () { toast('Vacía. Aquí no se tira nada ★'); });
 
   /* ---------- note ---------- */
-  drag(note, { end: function (e, moved) { if (moved) { note._f = getFrac(note); note._moved = true; } } });
+  drag(note, { end: function (e, moved) { if (moved) { note._f = getFrac(note); note._moved = true; } else openWin('info', { from: note }); } });
 
   /* ---------- search ---------- */
   var inp = $('#q'), res = $('#res'), clr = $('#qc');

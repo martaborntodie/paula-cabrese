@@ -413,9 +413,10 @@ html, body { background: #3a6ea5; }
 .wb.strip .st { flex: 1 0 auto; width: auto; height: 100%; margin: 0; padding: 0; border: 0; background: #fff; cursor: zoom-in; transform: none; box-shadow: none; }
 .wb.strip .st:hover, .wb.strip .st:focus-visible { transform: none; z-index: 1; filter: brightness(0.96); }
 .wb.strip .st img { display: block; height: 100%; width: auto; max-width: none; }
-.win.full .wb.strip.one { overflow-x: hidden; overflow-y: auto; }
-.win.full .wb.strip.one .st { height: auto; width: 100%; }
-.win.full .wb.strip.one .st img { width: 100%; height: auto; }
+.wb.strip.one { display: block !important; overflow-x: hidden; overflow-y: auto; background: #ece9d8; }
+.wb.strip.one .st { position: relative; display: block; height: auto; width: 100%; }
+.wb.strip.one .st img { display: block; width: 100%; height: auto; }
+.wb.strip.one .st .hint { position: absolute; left: 14px; bottom: 14px; padding: 4px 9px; background: #ffffe1; border: 1px solid #000; font: 400 12px/1.3 var(--sf); color: #000; pointer-events: none; }
 .ic .lb, .kid .lbl, .win .tb .tt { text-transform: uppercase; letter-spacing: 0.02em; }
 .ic .lb { overflow-wrap: normal; }
 .win .tb .tt, #start, #start * { font-family: "Trebuchet MS", Tahoma, "XP Sans", sans-serif; font-weight: 700; }
@@ -1124,8 +1125,9 @@ html, body { background: #3a6ea5; }
   }
   function stripBody(p) {
     return '<div class="wb strip' + (p.sn === 1 ? ' one' : '') + '">' + p.pics.map(function (pic, i) {
-      return '<button class="st ph" type="button" data-i="' + i + '" aria-label="Ampliar: ' + esc(pic[1]) + '"><img src="' + IMGS[pic[0]] + '" alt="' + esc(pic[1]) + '"></button>';
-    }).join('') + '</div>';
+      return '<button class="st ph" type="button" data-i="' + i + '" aria-label="Ampliar: ' + esc(pic[1]) + '"><img src="' + IMGS[pic[0]] + '" alt="' + esc(pic[1]) + '">'
+        + (p.sn === 1 ? '<span class="hint">' + (curLang === 'en' ? 'Scroll down to read ↓' : 'Desliza para leer ↓') + '</span>' : '') + '</button>';
+    }).join('') + (p.sn === 1 ? '<div class="cvtext"><article class="card">' + cardInner(p, curLang) + '</article></div>' : '') + '</div>';
   }
   function videoBody(p) {
     return '<div class="wb vid"><video src="' + esc(p.video) + '" autoplay muted loop playsinline' + (p.gif ? ' disablepictureinpicture' : ' controls') + ' preload="auto" aria-label="' + esc(p.name) + '"></video></div>';

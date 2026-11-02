@@ -2123,6 +2123,18 @@ html, body { background: #3a6ea5; }
     (function loop() {
       setTimeout(function () { if (!document.hidden) blink(Math.random() < 0.25); loop(); }, 2500 + Math.random() * 4500);
     })();
+    /* blink when the pointer passes over the eyes */
+    var EYES = [[501, 139.6], [555.6, 131]], busy = 0;
+    desk.addEventListener('pointermove', function (e) {
+      if (busy > Date.now()) return;
+      var t = e.target; if (t !== desk && t !== wall && t !== $('#wall2') && t !== w3) return;
+      var W = desk.clientWidth, H = desk.clientHeight, k = Math.max(W / 832, H / 525), ox = (W - 832 * k) / 2;
+      var x = (e.clientX - ox) / k, y = e.clientY / k;
+      for (var i = 0; i < EYES.length; i++) {
+        var dx = (x - EYES[i][0]) / 24, dy = (y - EYES[i][1]) / 15;
+        if (dx * dx + dy * dy <= 1) { busy = Date.now() + 700; blink(false); return; }
+      }
+    });
   })();
 
   /* ---------- boot ---------- */

@@ -534,6 +534,16 @@ html, body { background: #3a6ea5; }
 .kid svg { display: block; width: 62px; height: auto; }
 .kid .lbl { padding: 1px 4px; overflow-wrap: anywhere; }
 .kid:hover .lbl, .kid:focus .lbl, .kid:focus-visible .lbl { background: #316ac5; color: #fff; outline: 1px dotted #fff; }
+
+/* ---------- white wallpaper + bouncing slogan ---------- */
+#desk { --lab: #000; --sh: none; }
+#wall { background-color: #fff !important; background-image: none !important; }
+#vibe { position: absolute; left: 0; top: 0; z-index: 2; width: 300px; height: auto; touch-action: none; cursor: grab; will-change: transform; user-select: none; -webkit-user-drag: none; }
+#vibe.grab, #desk #vibe.grab { cursor: grabbing; }
+#desk #vibe { cursor: grab; }
+#desk.boom { --lab: #fff; }
+#desk.boom #wall { background-color: #000 !important; }
+#desk.boom #vibe { filter: invert(1); }
 </style>
 
 </head>
@@ -541,6 +551,7 @@ html, body { background: #3a6ea5; }
 <div id="desk">
   <div id="wall"></div>
   <div id="wall2"></div>
+  <img id="vibe" src="img/vibe.png" alt="My vibe could bring back Christ" draggable="false">
 
   <header id="bar"></header>
 
@@ -889,14 +900,7 @@ html, body { background: #3a6ea5; }
   }
 
   /* ---------- wallpaper ---------- */
-  function setWall(i) {
-    var w = WALLS[i];
-    wall.style.backgroundImage = w.bg; wall.style.backgroundColor = '#3a6ea5';
-    wall.style.backgroundPosition = w.pos;
-    desk.style.setProperty('--lab', w.lab);
-    desk.style.setProperty('--sh', w.sh);
-    desk.style.setProperty('--barbg', 'rgba(255,255,255,.55)');
-  }
+  function setWall(i) { wall.style.backgroundImage = 'none'; }
   var wall2 = $('#wall2');
   function fadeWall(i) {
     var w = WALLS[i];
@@ -2109,6 +2113,99 @@ html, body { background: #3a6ea5; }
   });
   startBtn.addEventListener('click', function () { smenu.hidden = !smenu.hidden; startBtn.classList.toggle('on', !smenu.hidden); });
   document.addEventListener('pointerdown', function (e) { if (!smenu.hidden && !e.target.closest('#smenu, #start')) closeStart(); });
+
+
+  /* ---------- bouncing slogan ---------- */
+  (function () {
+    var el = $('#vibe'); if (!el) return;
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var W, H, x = 0, y = 0, vx = 0, vy = 0, drag = null, last = 0, boomT = 0, cool = 0, BASE = 55;
+    function size() {
+      var dw = desk.clientWidth;
+      W = Math.max(200, Math.min(430, dw * 0.3)); if (dw < 700) W = Math.max(170, dw * 0.5);
+      el.style.width = W + 'px';
+      H = W * (el.naturalHeight && el.naturalWidth ? el.naturalHeight / el.naturalWidth : 1);
+    }
+    function dims() { return { w: desk.clientWidth, h: desk.clientHeight }; }
+    function init() {
+      size(); var d = dims();
+      x = d.w * 0.5 - W * 0.4; y = d.h * 0.12;
+      var a = Math.random() * Math.PI * 2; vx = Math.cos(a) * BASE; vy = Math.sin(a) * BASE;
+      if (Math.abs(vx) < 20) vx = 30; if (Math.abs(vy) < 20) vy = 30;
+      place();
+    }
+    function place() { el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)'; }
+    function boom() {
+      if (still || cool > performance.now()) return;
+      cool = performance.now() + 380;
+      desk.classList.add('boom'); clearTimeout(boomT);
+      boomT = setTimeout(function () { desk.classList.remove('boom'); }, 170);
+    }
+    function obstacles() {
+      var out = [], sel = desk.querySelectorAll('.ic, .win, #note, #trash');
+      for (var i = 0; i < sel.length; i++) {
+        var n = sel[i]; if (!n.offsetWidth || !n.offsetHeight) continue;
+        var cs = getComputedStyle(n); if (cs.visibility === 'hidden' || cs.display === 'none' || +cs.opacity < 0.2) continue;
+        var r = n.getBoundingClientRect(); out.push(r);
+      }
+      return out;
+    }
+    function step(t) {
+      requestAnimationFrame(step);
+      var dt = Math.min(0.05, (t - (last || t)) / 1000); last = t;
+      if (document.hidden || drag || still) return;
+      var d = dims(), hit = false, sp = Math.hypot(vx, vy);
+      if (sp > BASE * 1.05) { var k = Math.exp(-1.4 * dt); var ns = Math.max(BASE, sp * k); vx *= ns / sp; vy *= ns / sp; }
+      else if (sp < BASE * 0.95) { if (sp < 1) { vx = BASE; vy = BASE * 0.6; } else { vx *= BASE / sp; vy *= BASE / sp; } }
+      x += vx * dt; y += vy * dt;
+      if (x < 0) { x = 0; vx = Math.abs(vx); hit = true; }
+      if (x + W > d.w) { x = d.w - W; vx = -Math.abs(vx); hit = true; }
+      if (y < 0) { y = 0; vy = Math.abs(vy); hit = true; }
+      if (y + H > d.h) { y = d.h - H; vy = -Math.abs(vy); hit = true; }
+      var obs = obstacles();
+      for (var i = 0; i < obs.length; i++) {
+        var r = obs[i];
+        var ox = Math.min(x + W, r.right) - Math.max(x, r.left), oy = Math.min(y + H, r.bottom) - Math.max(y, r.top);
+        if (ox <= 0 || oy <= 0) continue;
+        if (Math.min(ox, oy) > Math.min(W, H) * 0.5) continue;
+        if (ox < oy) {
+          if (x + W / 2 < (r.left + r.right) / 2) { x -= ox; vx = -Math.abs(vx); } else { x += ox; vx = Math.abs(vx); }
+        } else {
+          if (y + H / 2 < (r.top + r.bottom) / 2) { y -= oy; vy = -Math.abs(vy); } else { y += oy; vy = Math.abs(vy); }
+        }
+        hit = true;
+      }
+      if (hit) boom();
+      place();
+    }
+    el.addEventListener('pointerdown', function (e) {
+      if (e.button) return;
+      e.stopPropagation(); e.preventDefault();
+      try { el.setPointerCapture(e.pointerId); } catch (_) {}
+      drag = { dx: e.clientX - x, dy: e.clientY - y, hist: [[performance.now(), e.clientX, e.clientY]] };
+      el.classList.add('grab');
+    });
+    el.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var d = dims();
+      x = Math.max(0, Math.min(d.w - W, e.clientX - drag.dx)); y = Math.max(0, Math.min(d.h - H, e.clientY - drag.dy));
+      var n = performance.now(); drag.hist.push([n, e.clientX, e.clientY]);
+      while (drag.hist.length > 2 && n - drag.hist[0][0] > 120) drag.hist.shift();
+      place();
+    });
+    function up() {
+      if (!drag) return;
+      var h = drag.hist, a = h[0], b = h[h.length - 1], dtm = Math.max(16, b[0] - a[0]) / 1000;
+      vx = (b[1] - a[1]) / dtm; vy = (b[2] - a[2]) / dtm;
+      var m = Math.hypot(vx, vy), MAX = 900; if (m > MAX) { vx *= MAX / m; vy *= MAX / m; }
+      drag = null; el.classList.remove('grab');
+    }
+    el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up);
+    el.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+    window.addEventListener('resize', function () { size(); var d = dims(); x = Math.min(x, Math.max(0, d.w - W)); y = Math.min(y, Math.max(0, d.h - H)); place(); });
+    if (el.complete && el.naturalWidth) init(); else el.addEventListener('load', init);
+    requestAnimationFrame(step);
+  })();
 
   /* ---------- boot ---------- */
   PROJECTS.forEach(function (p) { if (!p.hidden) addIcon(p); });

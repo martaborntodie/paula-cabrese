@@ -783,12 +783,14 @@ html, body { background: #3a6ea5; }
 
   var PROJECTS = [
     {
-      id: 'adidas', name: 'Adidas x Calabrese', title: 'Adidas × Calabrese', role: 'Colección conceptual',
+      id: 'adidas', name: 'Adidas x Calabrese', title: 'HYPEBEAST — ARTIFICIAL DESIRE', role: 'Fashion Design | Logomanía, Cultura Hype e Inteligencia Artificial',
       c: '#F2C913', d: '#C49B00', colw: 210,
       kw: 'amarillo yellow blanco white logomania hype lujo adidas trebol coleccion moda exclusividad genderless',
       text: [
-        'The main objective of this collection is merely aesthetic, subject of a personal curiosity concerning exclusivity and logomania. This fixation towards both concepts exists on the basis of admiration and bewilderment for collaborations such as “AirDior”, Vetements x DHL or Louis Vuitton x Supreme: examples of how hype culture and luxury are properly merged. Even if the final prototype is tailored consciously on the foundation of what some may think of as a snob ideology, the mere fact of insubstantiability or frivolity has a meaning of its own: ars gratia artis.',
-        'The project has no intention of covering or creating a necessity, but instead to feed an existing one. In order to appeal to a wider range of potential costumers, this creation is not only timeless but also genderless. Furthermore, the colors were purposely selected because of their psychological connotations. The reasons are the following: according to Eva Heller, yellow is the color of wisdom idealized as gold and white is the color of deities; the Holy Spirit is represented as a White dove. Both colors suggest unavailability for the mortals, the commoners; those who can’t afford or obtain the product.'
+        'El objetivo principal de esta colección es meramente estético, fruto de una curiosidad personal por la exclusividad y la logomanía. Esta fijación nace de la admiración y el desconcierto ante colaboraciones como “AirDior”, Vetements x DHL o Louis Vuitton x Supreme: ejemplos de cómo la cultura hype y el lujo se funden por completo. Aunque el prototipo final está confeccionado conscientemente sobre lo que algunos considerarían una ideología snob, la propia insustancialidad o frivolidad tiene un sentido en sí misma: ars gratia artis.',
+        'La propuesta recupera el imaginario *hypebeast* de finales de la década de 2010, cuando la logomanía, los *drops* limitados y las colaboraciones improbables transformaron productos cotidianos en objetos de deseo y símbolos de estatus.',
+        'A partir de la colección original, desarrollo una nueva interpretación visual mediante *inteligencia artificial*, llevando estos códigos al terreno del kitsch y el surrealismo digital. La imagen enfrenta una estética de lujo ostentoso con un paisaje rural artificial, animales de colores imposibles y un personaje que subvierte los ideales habituales de juventud y exclusividad asociados al streetwear.',
+        'El resultado exagera hasta el absurdo los mecanismos de deseo de la cultura hype. *Si el lujo convierte lo ordinario en extraordinario mediante el valor de una marca, la IA permite llevar esa misma lógica al extremo, creando universos aspiracionales que ni siquiera necesitan existir.*'
       ],
       facts: [
         ['Inspo principal', 'Nike ISPA’s collection for summer 2020 · nss magazine'],
@@ -1178,13 +1180,9 @@ html, body { background: #3a6ea5; }
 
   /* ---------- idioma ES / EN ---------- */
   var curLang = 'es';
-  var ORIG = { adidas: 'en' };           /* idioma en el que está escrito el texto original; el resto está en español */
-  var ROLE_EN = { adidas: 'Conceptual collection', metgala: 'Coming soon', estilismos: 'Coming soon' };
+  var ORIG = {};           /* idioma en el que está escrito el texto original; el resto está en español */
+  var ROLE_EN = { metgala: 'Coming soon', estilismos: 'Coming soon' };
   var TR = {
-    adidas: { text: [
-      'El objetivo principal de esta colección es meramente estético, fruto de una curiosidad personal por la exclusividad y la logomanía. Esta fijación nace de la admiración y el desconcierto ante colaboraciones como “AirDior”, Vetements x DHL o Louis Vuitton x Supreme: ejemplos de cómo la cultura hype y el lujo se funden por completo. Aunque el prototipo final está confeccionado conscientemente sobre lo que algunos considerarían una ideología snob, la propia insustancialidad o frivolidad tiene un sentido en sí misma: ars gratia artis.',
-      'El proyecto no pretende cubrir ni crear una necesidad, sino alimentar una ya existente. Para atraer a un público potencial más amplio, esta creación no solo es atemporal sino también genderless. Además, los colores se eligieron a propósito por sus connotaciones psicológicas. Los motivos son los siguientes: según Eva Heller, el amarillo es el color de la sabiduría idealizada como oro y el blanco es el color de las deidades; el Espíritu Santo se representa como una paloma blanca. Ambos colores sugieren inaccesibilidad para los mortales, los comunes; aquellos que no pueden pagar u obtener el producto.'
-    ] },
     anti: { text: [
       'An exploration of ugliness (“feísmo”) as an aesthetic language and a tool of transgression within contemporary fashion. Developed entirely in Adobe Photoshop, this shopping page builds an imaginary where luxury, kitsch and popular culture converge through a maximalist composition that is deliberately chaotic and irreverent.',
       'Through the decontextualization of archive pieces, the juxtaposition of aesthetic codes and the breaking of visual hierarchies, the project questions the traditional canons of good taste and the cultural mechanisms that determine the value and desirability of fashion objects.',
@@ -1216,7 +1214,7 @@ html, body { background: #3a6ea5; }
     var own = ORIG[p.id] || 'es', tr = TR[p.id];
     var text = (l === own || !tr) ? p.text : tr.text;
     var role = (l === 'en' && ROLE_EN[p.id]) ? ROLE_EN[p.id] : p.role;
-    var paras = text.map(function (t) { return '<p' + (p.lead ? ' class="lead"' : '') + '>' + esc(t) + '</p>'; }).join('');
+    var paras = text.map(function (t) { return '<p' + (p.lead ? ' class="lead"' : '') + '>' + esc(t).replace(/\*([^*]+)\*/g, '<em>$1</em>') + '</p>'; }).join('');
     var facts = p.facts.map(function (f) {
       var lab = l === 'en' ? (LAB_EN[f[0]] || f[0]) : f[0], val = f[1];
       if (l === 'en' && VAL_EN[val]) val = VAL_EN[val];

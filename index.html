@@ -1829,7 +1829,7 @@ html, body { background: #3a6ea5; }
     if (p.mfw) return h.slice(0, h.indexOf('<div class="wb')) + mfwBody(p);
     if (p.float) return h.slice(0, h.indexOf('<div class="wb')).replace(/<span class="seg">.*?<\/span>/, '') + floatBody(p);
     if (p.mag) return h.slice(0, h.indexOf('<div class="wb')).replace(/<span class="seg">.*?<\/span>/, '') + magBody(p);
-    if (p.video) return h.slice(0, h.indexOf('<div class="wb')).replace(/<span class="seg">.*?<\/span>/, '') + videoBody(p);
+    if (p.video) return h.slice(0, h.indexOf('<div class="wb')).replace(p.id === 'hune' ? /$^/ : /<span class="seg">.*?<\/span>/, '') + videoBody(p);
     if (p.strip) return h.slice(0, h.indexOf('<div class="wb')) + stripBody(p);
     if (p.kids) return h.slice(0, h.indexOf('<div class="wb')) + kidsBody(p);
     if (!p.cover) return h;

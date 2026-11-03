@@ -559,6 +559,13 @@ html, body { background: #3a6ea5; }
 .kid .lbl { padding: 1px 4px; overflow-wrap: anywhere; }
 .kid:hover .lbl, .kid:focus .lbl, .kid:focus-visible .lbl { background: #316ac5; color: #fff; outline: 1px dotted #fff; }
 
+/* texto de los moodboards */
+.pnt .ptxt { position: absolute; z-index: 8000; left: 18px; top: 18px; width: min(430px, calc(100% - 36px)); max-height: calc(100% - 36px); overflow-y: auto; padding: 14px 16px 10px; background: #ece9d8; border: 1px solid #000; box-shadow: 4px 5px 14px rgba(0,0,0,.35); font: 400 12.5px/1.6 var(--sf); color: #000; user-select: text; -webkit-user-select: text; }
+.pnt .ptxt h3 { margin: 0 24px 4px 0; font: 700 18px/1.15 var(--sf); color: #003399; }
+.pnt .ptxt .role { display: inline-block; margin: 2px 0 10px; padding: 2px 7px; font-size: 11px; background: #f6f4ea; border: 1px solid #aca899; }
+.pnt .ptxt p { margin: 0 0 8px; }
+.pnt .ptxt .ptx { position: absolute; right: 8px; top: 8px; width: 20px; height: 20px; padding: 0; border: 1px solid #7f9db9; background: #fff; font: 700 14px/1 var(--sf); cursor: pointer; }
+.pnt .ptxt .ptx:hover { background: #316ac5; color: #fff; }
 /* ---------- wallpaper ---------- */
 #desk { --lab: #fff; --sh: 1px 1px 2px rgba(0,0,0,.95); }
 #wall { background-color: #3a6ea5 !important; background-image: url("img/wall.webp") !important; background-position: center top !important; background-size: cover !important; }
@@ -879,13 +886,19 @@ html, body { background: #3a6ea5; }
       kw: 'alineo studio madrid fashion week hune', kids: ['mermaid', 'hune'], text: [], facts: [], pics: [] },
     { id: 'metgala', name: 'Met Gala', title: 'Met Gala', role: '', c: '#FFFFFF', d: '#C9C9CF', colw: 270, mag: true, ie: true,
       kw: 'met gala', text: [], facts: [], pics: [] },
-    { id: 'moodboards', name: 'Moodboards', title: 'Moodboards', role: '', paint: true, c: '#FFFFFF', d: '#C9C9CF', colw: 270,
-      kw: 'moodboards moodboard paint dibujo collage referencias inspiracion', text: [], facts: [], pics: [] },
+    { id: 'moodperm', name: 'Códigos permanentes', title: 'Códigos permanentes', role: '', paint: true, moodset: [2, 10, 15, 19, 22, 23, 24, 30, 32, 35, 36, 37, 38, 39, 41, 42, 43, 45], c: '#FFFFFF', d: '#C9C9CF', colw: 270,
+      kw: 'codigos permanentes moodboard identidad estetica personal brutalismo materico deconstruccion conceptualismo mcqueen leane margiela manzoni', text: [], facts: [], pics: [],
+      mtitle: 'CÓDIGOS PERMANENTES', msub: 'Fashion Styling | Identidad Estética Personal',
+      mtext: ['Mi identidad estética se construye en torno al brutalismo matérico, la deconstrucción, el conceptualismo y la provocación visual. Me interesa la tensión entre el lujo y el deterioro, la belleza y lo incómodo, así como la transformación de objetos cotidianos en piezas de valor estético.', 'Referencias como Alexander McQueen, Shaun Leane, Maison Martin Margiela y Piero Manzoni reflejan mi interés por la experimentación formal y material. Metales pulidos, superficies industriales, tejidos erosionados y volúmenes escultóricos construyen un imaginario crudo y experimental.', 'Estos códigos definen mi manera de entender el estilismo: alterar, descontextualizar y resignificar lo convencional para construir nuevas identidades visuales.'] },
+    { id: 'moodest', name: 'Códigos estacionales', title: 'Códigos estacionales', role: '', paint: true, moodset: [0, 1, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 16, 17, 18, 20, 21, 25, 26, 27, 28, 29, 31, 33, 34, 40, 44], c: '#FFFFFF', d: '#C9C9CF', colw: 270,
+      kw: 'codigos estacionales moodboard maximalismo kitsch feismo camp tom ford gucci chanel fendi isamaya ffrench lachapelle animal print', text: [], facts: [], pics: [],
+      mtitle: 'CÓDIGOS ESTACIONALES DE PAULA CALABRESE', msub: 'Fashion Styling | Investigación Estética y Dirección Visual',
+      mtext: ['Mis intereses estéticos actuales se orientan hacia el <em>maximalismo, el kitsch, el feísmo y la sensibilidad camp</em>. Me atrae la contradicción entre el lujo y la vulgaridad, la sofisticación y el exceso, desde una perspectiva irónica y provocadora.', 'Referencias como Tom Ford para Gucci, la logomanía de Chanel y Fendi, Isamaya Ffrench y David LaChapelle construyen un imaginario marcado por el artificio y la cultura de consumo. Animal prints, pieles sintéticas, pedrería, acabados metalizados y accesorios exagerados refuerzan esta estética ornamental.', 'Esta exploración representa una faceta más lúdica de mi lenguaje visual, donde la exageración, la ironía y el exceso cuestionan los límites tradicionales del buen gusto y la elegancia.'] },
     { id: 'estilismos', name: 'Estilismos', title: 'Estilismos', role: '', c: '#FFFFFF', d: '#C9C9CF', colw: 270,
       kw: 'estilismos styling looks', strip: true, text: [], facts: [], pics: [['look1','Look 1'],['look2','Look 2'],['look3','Look 3'],['look4','Look 4'],['look5','Look 5'],['look6','Look 6']] }
   );
   (function () {
-    var ORDER = ['info', 'alineo', 'anti', 'decreto', 'metgala', 'adidas', 'estilismos', 'moodboards', 'hune', 'mermaid'];
+    var ORDER = ['info', 'alineo', 'anti', 'decreto', 'metgala', 'adidas', 'estilismos', 'moodperm', 'moodest', 'hune', 'mermaid'];
     PROJECTS.sort(function (a, b) { return ORDER.indexOf(a.id) - ORDER.indexOf(b.id); });
   })();
 
@@ -1035,7 +1048,7 @@ html, body { background: #3a6ea5; }
   function icons() { return Array.prototype.slice.call(desk.querySelectorAll('.ic')); }
 
   var IEIC = '<svg viewBox="0 0 64 56" aria-hidden="true"><image href="img/ie2.png" x="4" y="-2" width="56" height="56" preserveAspectRatio="xMidYMid meet"/></svg>';
-  function iconFor(p) { return p.id === 'info' ? USERIC : p.id === 'moodboards' ? PAINTIC : p.ie ? IEIC : FOLDER; }
+  function iconFor(p) { return p.id === 'info' ? USERIC : p.paint ? PAINTIC : p.ie ? IEIC : FOLDER; }
   function addIcon(p, opts) {
     opts = opts || {};
     var b = el('button', 'ic', iconFor(p) + '<span class="lb">' + esc(opts.label || p.name) + '</span>');
@@ -1329,11 +1342,11 @@ html, body { background: #3a6ea5; }
     ['Ver', [['Panel de imágenes', 'panel']]],
     ['Imagen', [['Borrar dibujo', 'clr'], ['Quitar todas las imágenes', 'rmimg'], ['Fondo blanco', 'bgw']]],
     ['Colores', [['Elegir color…', 'pick']]],
-    ['Ayuda', [['Cómo se usa', 'help']]]
+    ['Ayuda', [['Leer texto', 'txt'], ['Cómo se usa', 'help']]]
   ];
   var PSIZES = [1, 3, 6, 12];
 
-  function paintBody() {
+  function paintBody(p) {
     return '<div class="wb pnt t-move" tabindex="0">'
       + '<div class="pmenu">' + PMENUS.map(function (m, i) { return '<button class="pmi" type="button" data-m="' + i + '">' + m[0] + '</button>'; }).join('') + '</div>'
       + '<div class="pmain"><div class="ptools"><div class="ptg">'
@@ -1348,7 +1361,7 @@ html, body { background: #3a6ea5; }
       + '<input type="range" min="15" max="100" value="100" data-a="op" title="Opacidad"><button type="button" data-a="del" title="Eliminar">✕</button></div>'
       + '</div></div>'
       + '<aside class="ppanel"><div class="pph">Imágenes</div><div class="pgrid">'
-      + MOOD.map(function (m, i) { return '<button class="pth" type="button" draggable="true" data-i="' + i + '" aria-label="Añadir imagen ' + (i + 1) + '"><img src="' + MOODDIR + m[0] + '" alt="" loading="lazy" draggable="false"></button>'; }).join('')
+      + MOOD.map(function (m, i) { return (p.moodset && p.moodset.indexOf(i) < 0) ? '' : '<button class="pth" type="button" draggable="true" data-i="' + i + '" aria-label="Añadir imagen ' + (i + 1) + '"><img src="' + MOODDIR + m[0] + '" alt="" loading="lazy" draggable="false"></button>'; }).join('')
       + '</div></aside></div>'
       + '<div class="ppal"><div class="pcur"><i class="b" style="background:#fff"></i><i class="f" style="background:#000"></i></div><div class="pcols">'
       + PCOLS.map(function (c) { return '<button type="button" data-c="' + c + '" style="background:' + c + '" aria-label="Color ' + c + '"></button>'; }).join('')
@@ -1356,7 +1369,7 @@ html, body { background: #3a6ea5; }
       + '<div class="pstat"><span class="ps1">' + PHINT.move + '</span><span class="ps2">Construye tu moodboard: elige imágenes del panel y arrástralas al lienzo.</span></div></div>';
   }
 
-  function wirePaint(w) {
+  function wirePaint(w, proj) {
     var root = $('.pnt', w), sheet = $('.psheet', w), cv = $('.pcv', w), ctx = cv.getContext('2d'), layer = $('.pimgs', w),
       selEl = $('.psel', w), itb = $('.pitb', w), st1 = $('.ps1', w), st2 = $('.ps2', w), opIn = $('input[data-a=op]', itb);
     var dpr = Math.min(window.devicePixelRatio || 1, 2), tool = 'move', color = '#000000', bg = '#ffffff', size = 3;
@@ -1638,13 +1651,21 @@ html, body { background: #3a6ea5; }
       else if (a === 'bgw') { snap(); setBg('#ffffff'); }
       else if (a === 'pick') { var ci = document.createElement('input'); ci.type = 'color'; ci.value = color; ci.addEventListener('input', function () { setColor(ci.value); }); ci.click(); }
       else if (a === 'help') showHelp();
+      else if (a === 'txt') showText();
     }
     function clearAll() { ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height); items.slice().forEach(delImg); setBg('#ffffff'); }
+    function showText() {
+      var old = $('.ptxt', sheet); if (old) { old.remove(); return; }
+      var h = el('div', 'ptxt', '<button class="ptx" type="button" aria-label="Cerrar">×</button><h3>' + proj.mtitle + '</h3><span class="role">' + proj.msub + '</span>' + proj.mtext.map(function (t) { return '<p>' + t + '</p>'; }).join(''));
+      $('.ptx', h).addEventListener('click', function () { h.remove(); });
+      sheet.appendChild(h);
+    }
     function showHelp() {
       var old = $('.phelp', sheet); if (old) { old.remove(); return; }
       var h = el('div', 'phelp', '<b>Moodboards — cómo se usa</b><p>• Pulsa una imagen del panel (o arrástrala al lienzo) para añadirla.</p><p>• Con la flecha: arrastra para mover, esquinas para el tamaño, el punto verde para girar, la rueda del ratón para hacer zoom y doble clic para voltear.</p><p>• La barra que aparece arriba permite girar, voltear, duplicar, ordenar, cambiar la opacidad o eliminar.</p><p>• Con lápiz, pincel, formas o texto dibujas encima. Clic derecho en un color = color de fondo.</p><p>• Ctrl+Z deshace el dibujo · Supr elimina la imagen · Archivo → Guardar como PNG.</p><p><i>(clic para cerrar)</i></p>');
       h.addEventListener('click', function () { h.remove(); }); sheet.appendChild(h);
     }
+    setTimeout(showText, 350);
     function savePng() {
       var W = sheet.clientWidth, H = sheet.clientHeight, sc = dpr, c = document.createElement('canvas'); c.width = Math.round(W * sc); c.height = Math.round(H * sc);
       var x = c.getContext('2d'); x.fillStyle = bg; x.fillRect(0, 0, c.width, c.height);
@@ -1752,7 +1773,7 @@ html, body { background: #3a6ea5; }
   function winHTML(p) {
     var h = winHTML0(p);
     if (p.show) return h.slice(0, h.indexOf('<div class="wb')) + showBody(p);
-    if (p.paint) return h.slice(0, h.indexOf('<div class="wb')).replace(/<span class="seg">.*?<\/span>/, '') + paintBody();
+    if (p.paint) return h.slice(0, h.indexOf('<div class="wb')).replace(/<span class="seg">.*?<\/span>/, '') + paintBody(p);
     if (p.mfw) return h.slice(0, h.indexOf('<div class="wb')) + mfwBody(p);
     if (p.float) return h.slice(0, h.indexOf('<div class="wb')).replace(/<span class="seg">.*?<\/span>/, '') + floatBody(p);
     if (p.mag) return h.slice(0, h.indexOf('<div class="wb')).replace(/<span class="seg">.*?<\/span>/, '') + magBody(p);
@@ -1802,7 +1823,7 @@ html, body { background: #3a6ea5; }
     var fbx = $('.wb.float', w); if (fbx) wireFloat(fbx);
     if (p.mag) wireMag(w);
     if (p.mfw) wireMfw(w);
-    if (p.paint) wirePaint(w);
+    if (p.paint) wirePaint(w, p);
     if (p.show) wireShow(w, p);
     w.addEventListener('click', function (e) {
       var a = e.target.closest('[data-act]');

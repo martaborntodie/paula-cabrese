@@ -434,6 +434,14 @@ html, body { background: #3a6ea5; }
 .win.full .wb.vid video { object-fit: contain; }
 .wb.vid.vtxt { position: relative; overflow-x: hidden; overflow-y: auto; container-type: size; }
 .wb.vid.vtxt video { height: 100cqh; }
+.wb.vid.vtxt .vrow { display: flex; height: 100cqh; background: #000; }
+.wb.vid.vtxt .vrow video { flex: none; height: 100%; width: auto; aspect-ratio: 9 / 16; object-fit: cover; }
+.vstage { position: relative; flex: 1; min-width: 0; overflow: hidden; background: #fff; cursor: pointer; outline: none; }
+.vstage .vs { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: translateY(100%); transition: transform 1s cubic-bezier(.65,0,.25,1); pointer-events: none; -webkit-user-drag: none; }
+.vstage .vs.on { transform: translateY(0); z-index: 2; }
+.vstage .vs.out { transform: translateY(-100%); z-index: 1; }
+.vstage .vs.snap { transition: none; }
+@container (max-width: 640px) { .wb.vid.vtxt .vrow { flex-direction: column; } .wb.vid.vtxt .vrow video { width: 100%; height: 62%; aspect-ratio: auto; } }
 .wb.vid.vtxt .cvtext { background: #ece9d8; }
 .wb.vid .vhint { position: absolute; left: 12px; top: 10px; z-index: 3; padding: 3px 8px; background: #ffffe1; border: 1px solid #000; font: 400 11px/1.3 var(--sf); color: #000; pointer-events: none; }
 .wb.float { display: block !important; position: relative; padding: 0; background: #fff; overflow: hidden; }
@@ -843,7 +851,7 @@ html, body { background: #3a6ea5; }
       ]
     },
     {
-      id: 'hune', hidden: true, video: 'hune.mp4', name: 'Alineo x Hune', title: 'Alineo Studio × Hune — SS26', role: 'Fashion Stylist & Creative Coordinator',
+      id: 'hune', hidden: true, video: 'hune.mp4', vr: 9 / 16 + 2 / 3, name: 'Alineo x Hune', title: 'Alineo Studio × Hune — SS26', role: 'Fashion Stylist & Creative Coordinator',
       c: '#8FD3F4', d: '#58AEDD', colw: 270, pending: 2,
       kw: 'sirenas calzado capsula mallorca 080 barcelona fashion y2k transparencias vogue neo2 acero vein theomoda alineo hune',
       text: [
@@ -898,7 +906,7 @@ html, body { background: #3a6ea5; }
       kw: 'moodboards moodboard paint codigos permanentes estacionales identidad estetica brutalismo maximalismo kitsch camp mcqueen margiela tom ford gucci chanel fendi lachapelle', text: [], facts: [], pics: [],
       boards: [
       { name: 'Códigos permanentes', moodset: [2, 10, 15, 19, 22, 23, 24, 30, 32, 35, 36, 37, 38, 39, 41, 42, 43, 45], mtitle: 'CÓDIGOS PERMANENTES', msub: 'Fashion Styling | Identidad Estética Personal', mtext: ['Mi identidad estética se construye en torno al brutalismo matérico, la deconstrucción, el conceptualismo y la provocación visual. Me interesa la tensión entre el lujo y el deterioro, la belleza y lo incómodo, así como la transformación de objetos cotidianos en piezas de valor estético.', 'Referencias como Alexander McQueen, Shaun Leane, Maison Martin Margiela y Piero Manzoni reflejan mi interés por la experimentación formal y material. Metales pulidos, superficies industriales, tejidos erosionados y volúmenes escultóricos construyen un imaginario crudo y experimental.', 'Estos códigos definen mi manera de entender el estilismo: alterar, descontextualizar y resignificar lo convencional para construir nuevas identidades visuales.'] },
-      { name: 'Códigos estacionales', moodset: [0, 1, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 16, 17, 18, 20, 21, 25, 26, 27, 28, 29, 31, 33, 34, 40, 44], mtitle: 'CÓDIGOS ESTACIONALES DE PAULA CALABRESE', msub: 'Fashion Styling | Investigación Estética y Dirección Visual', mtext: ['Mis intereses estéticos actuales se orientan hacia el <em>maximalismo, el kitsch, el feísmo y la sensibilidad camp</em>. Me atrae la contradicción entre el lujo y la vulgaridad, la sofisticación y el exceso, desde una perspectiva irónica y provocadora.', 'Referencias como Tom Ford para Gucci, la logomanía de Chanel y Fendi, Isamaya Ffrench y David LaChapelle construyen un imaginario marcado por el artificio y la cultura de consumo. Animal prints, pieles sintéticas, pedrería, acabados metalizados y accesorios exagerados refuerzan esta estética ornamental.', 'Esta exploración representa una faceta más lúdica de mi lenguaje visual, donde la exageración, la ironía y el exceso cuestionan los límites tradicionales del buen gusto y la elegancia.'] }
+      { name: 'Códigos estacionales', moodset: [0, 1, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 16, 17, 18, 20, 21, 25, 26, 27, 28, 29, 31, 33, 34, 40, 44], mtitle: 'CÓDIGOS ESTACIONALES', msub: 'Fashion Styling | Investigación Estética y Dirección Visual', mtext: ['Mis intereses estéticos actuales se orientan hacia el <em>maximalismo, el kitsch, el feísmo y la sensibilidad camp</em>. Me atrae la contradicción entre el lujo y la vulgaridad, la sofisticación y el exceso, desde una perspectiva irónica y provocadora.', 'Referencias como Tom Ford para Gucci, la logomanía de Chanel y Fendi, Isamaya Ffrench y David LaChapelle construyen un imaginario marcado por el artificio y la cultura de consumo. Animal prints, pieles sintéticas, pedrería, acabados metalizados y accesorios exagerados refuerzan esta estética ornamental.', 'Esta exploración representa una faceta más lúdica de mi lenguaje visual, donde la exageración, la ironía y el exceso cuestionan los límites tradicionales del buen gusto y la elegancia.'] }
       ] },
     { id: 'estilismos', name: 'Estilismos', title: 'Estilismos', role: '', c: '#FFFFFF', d: '#C9C9CF', colw: 270,
       kw: 'estilismos styling looks', strip: true, text: [], facts: [], pics: [['look1','Look 1'],['look2','Look 2'],['look3','Look 3'],['look4','Look 4'],['look5','Look 5'],['look6','Look 6']] }
@@ -1255,9 +1263,12 @@ html, body { background: #3a6ea5; }
         + (p.sn === 1 ? '<span class="hint">' + (curLang === 'en' ? 'Scroll down to read ↓' : 'Desliza para leer ↓') + '</span>' : '') + '</button>';
     }).join('') + (p.sn === 1 ? '<div class="cvtext"><article class="card">' + cardInner(p, curLang) + '</article></div>' : '') + '</div>';
   }
+  var HUNEPICS = '01 02 03 04 05 06 07 08 09 10 11 12 13 14'.split(' ');
   function videoBody(p) {
     var vt = p.id === 'hune';
-    return '<div class="wb vid' + (vt ? ' vtxt' : '') + '"><video src="' + esc(p.video) + '" autoplay muted loop playsinline' + (p.gif ? ' disablepictureinpicture' : ' controls') + ' preload="auto" aria-label="' + esc(p.name) + '"></video>'
+    var vh = '<video src="' + esc(p.video) + '" autoplay muted loop playsinline' + (p.gif ? ' disablepictureinpicture' : ' controls') + ' preload="auto" aria-label="' + esc(p.name) + '"></video>';
+    if (vt) vh = '<div class="vrow">' + vh + '<div class="vstage" role="button" tabindex="0" aria-label="Siguiente foto">' + HUNEPICS.map(function (n, i) { return '<img class="vs" src="hune/' + n + '.webp" alt="Alineo Studio × Hune, foto ' + (i + 1) + '" decoding="async"' + (i ? ' loading="lazy"' : '') + '>'; }).join('') + '</div></div>';
+    return '<div class="wb vid' + (vt ? ' vtxt' : '') + '">' + vh
       + (vt ? '<span class="vhint">' + (curLang === 'en' ? 'Scroll down to read ↓' : 'Desliza para leer ↓') + '</span><div class="cvtext"><article class="card">' + cardInner(p, curLang) + '</article></div>' : '') + '</div>';
   }
   var MAGHTML = "<div class=\"mhero\"><video src=\"metgala-hq.mp4\" autoplay muted loop playsinline disablepictureinpicture preload=\"auto\" aria-label=\"Met Gala\"></video><img class=\"mhlogo\" src=\"img/met-logo.png\" alt=\"The Met\"></div>\n<div class=\"mcred\">Guillermo Alcaide Trillo-Figueroa<span>&amp;</span>Paula Calabrese Blanes</div><div class=\"mframes\"><img src=\"mag/n1.webp\" alt=\"\" loading=\"lazy\" decoding=\"async\"><img src=\"mag/n2.webp\" alt=\"\" loading=\"lazy\" decoding=\"async\"><img src=\"mag/n3.webp\" alt=\"\" loading=\"lazy\" decoding=\"async\"><img src=\"mag/n4.webp\" alt=\"\" loading=\"lazy\" decoding=\"async\"></div><div class=\"cvtext mgtext\" id=\"mg-propuesta\"><article class=\"card\"><h2>MET GALA 2026 — COSTUME IS ART</h2><span class=\"role\">Fashion Styling | Conceptualización, Dirección Creativa y Performance</span><p><em>Paula Calabrese × Guillermo Alcaide</em></p><p>Esta propuesta de estilismo para <em>Bianca Censori</em> reinterpreta el concepto Fashion is Art de la Met Gala 2026, explorando la relación entre el cuerpo, la escultura clásica y la moda performativa.</p><p>Inspirada en la <em>Victoria de Samotracia</em>, la <em>técnica escultórica de los paños mojados</em> y el universo estético de <em>Di Petsa</em>, la propuesta plantea una transformación en directo: Bianca aparece envuelta en una estructura textil rígida, concebida como una crisálida, que comienza a deshacerse al entrar en contacto con el agua. A medida que el tejido pierde su estructura, ella misma lo moldea sobre su cuerpo, revelando una silueta inspirada en los drapeados de la escultura helenística.</p><p>La intervención de <em>Kanye West</em> activa la transformación, pero es Bianca quien construye su imagen final, invirtiendo la relación tradicional entre artista y musa.</p><p>Más allá del impacto visual, el proyecto plantea una reflexión sobre <em>la autoría, la autonomía corporal y la transformación del cuerpo en obra de arte</em>. La prenda deja de ser un objeto estático para convertirse en una performance donde el acto de vestirse es, en sí mismo, el proceso creativo.</p></article></div>";
@@ -1748,6 +1759,22 @@ html, body { background: #3a6ea5; }
     });
     setTimeout(function () { box.focus({ preventScroll: true }); }, 50);
   }
+  function wireHune(w) {
+    var st = $('.vstage', w); if (!st) return;
+    var sl = [].slice.call(st.querySelectorAll('.vs')), cur = 0, timer;
+    sl[0].classList.add('on');
+    function go() {
+      var a = sl[cur], nx = (cur + 1) % sl.length, b = sl[nx];
+      b.classList.add('snap'); b.classList.remove('out'); void b.offsetWidth; b.classList.remove('snap');
+      a.classList.remove('on'); a.classList.add('out'); b.classList.add('on');
+      setTimeout(function () { a.classList.add('snap'); a.classList.remove('out'); void a.offsetWidth; a.classList.remove('snap'); }, 1100);
+      cur = nx;
+    }
+    function start() { clearInterval(timer); timer = setInterval(function () { if (!w.isConnected) { clearInterval(timer); return; } if (!document.hidden) go(); }, 4000); }
+    st.addEventListener('click', function () { go(); start(); });
+    st.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); start(); } });
+    start();
+  }
   function mfwBody(p) {
     return '<div class="wb mfw"><div class="mwrap"><div class="mstrip">' + p.pics.map(function (pic, i) {
       return '<button class="st ph" type="button" data-i="' + i + '" aria-label="Ampliar: ' + esc(pic[1]) + '"><img src="' + esc(IMGS[pic[0]]) + '" alt="' + esc(pic[1]) + '" decoding="async"></button>';
@@ -1848,6 +1875,7 @@ html, body { background: #3a6ea5; }
     var fbx = $('.wb.float', w); if (fbx) wireFloat(fbx);
     if (p.mag) wireMag(w);
     if (p.mfw) wireMfw(w);
+    if (p.id === 'hune') wireHune(w);
     if (p.paint) wirePaint(w, p);
     if (p.show) wireShow(w, p);
     w.addEventListener('click', function (e) {

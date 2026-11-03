@@ -573,13 +573,13 @@ html, body { background: #3a6ea5; }
 .mag .mcoll .mstk { position: absolute; z-index: 6; left: 60%; top: 41%; transform: rotate(-6deg); font: 400 clamp(20px, 5.6cqw, 56px)/.92 var(--im); color: var(--red); text-transform: uppercase; -webkit-text-stroke: 1px currentColor; text-shadow: 2px 2px 0 #000; }
 .mag .mcoll .mlogo2 { position: absolute; z-index: 6; left: 3%; bottom: 3%; width: 8%; height: auto; }
 
-.mag .mlogo { margin-left: auto; width: clamp(64px, 11cqw, 120px); height: auto; align-self: flex-start; }
-.mag .msh { align-items: flex-start; flex-wrap: nowrap; }
+.mag .mlogo { order: -1; width: clamp(60px, 8cqw, 88px); height: auto; margin-bottom: 14px; }
+.mag .msh { flex-direction: column; align-items: flex-start; gap: 0; }
 .mag .msub { margin-top: 6px; font: italic 400 15px var(--tm); color: #333; }
 .mag em { font-style: italic; }
 .mag .mcols.one { display: block; column-count: 1; max-width: 780px; margin-left: auto; margin-right: auto; }
 .mag .mcols.one p { margin: 0 0 14px; font: 400 16px/1.7 var(--tm); }
-.wb.mag { display: block !important; position: relative; padding: 0; overflow-x: hidden; overflow-y: auto; background: #fff; color: #000; container-type: inline-size; font: 400 13px/1.6 Tahoma, Verdana, "XP Sans", sans-serif; --tm: "Times New Roman", Times, serif; --im: Impact, "Haettenschweiler", "Arial Black", "XP Sans", sans-serif; --xs: Tahoma, Verdana, "XP Sans", sans-serif; --red: #c40000; --lnk: #0000ee; }
+.wb.mag { display: block !important; position: relative; padding: 0; overflow-x: hidden; overflow-y: auto; background: #fff; color: #000; container-type: inline-size; font: 400 13px/1.6 Tahoma, Verdana, "XP Sans", sans-serif; --tm: Tahoma, "XP Sans", Verdana, sans-serif; --im: Impact, "Haettenschweiler", "Arial Black", "XP Sans", sans-serif; --xs: Tahoma, Verdana, "XP Sans", sans-serif; --red: #c40000; --lnk: #0000ee; }
 .wb.mag * { box-sizing: border-box; }
 .mag .mmenu { position: sticky; top: 0; z-index: 32; display: flex; gap: 2px; padding: 2px 4px; background: #ece9d8; border-bottom: 1px solid #aca899; font: 400 12px var(--xs); color: #000; }
 .mag .mmenu span { padding: 2px 8px; }

@@ -1272,6 +1272,18 @@ html, body { background: #3a6ea5; }
       + (vt ? '<span class="vhint">' + (curLang === 'en' ? 'Scroll down to read ↓' : 'Desliza para leer ↓') + '</span><div class="cvtext"><article class="card">' + cardInner(p, curLang) + '</article></div>' : '') + '</div>';
   }
   var MAGHTML = "<div class=\"mhero\"><video src=\"metgala-hq.mp4\" autoplay muted loop playsinline disablepictureinpicture preload=\"auto\" aria-label=\"Met Gala\"></video><img class=\"mhlogo\" src=\"img/met-logo.png\" alt=\"The Met\"></div>\n<div class=\"mcred\">Guillermo Alcaide Trillo-Figueroa<span>&amp;</span>Paula Calabrese Blanes</div><div class=\"mframes\"><img src=\"mag/n1.webp\" alt=\"\" loading=\"lazy\" decoding=\"async\"><img src=\"mag/n2.webp\" alt=\"\" loading=\"lazy\" decoding=\"async\"><img src=\"mag/n3.webp\" alt=\"\" loading=\"lazy\" decoding=\"async\"><img src=\"mag/n4.webp\" alt=\"\" loading=\"lazy\" decoding=\"async\"></div><div class=\"cvtext mgtext\" id=\"mg-propuesta\"><article class=\"card\"><h2>MET GALA 2026 — COSTUME IS ART</h2><span class=\"role\">Fashion Styling | Conceptualización, Dirección Creativa y Performance</span><p>Paula Calabrese × Guillermo Alcaide</p><p>Esta propuesta de estilismo para Kim Kardashian reinterpreta el concepto Fashion is Art de la Met Gala 2026, explorando la relación entre el cuerpo, la escultura clásica y la moda performativa.</p><p>Inspirada en la Victoria de Samotracia, la técnica escultórica de los paños mojados y el universo estético de Di Petsa, la propuesta plantea una transformación en directo: Kim aparece envuelta en una estructura textil rígida, concebida como una crisálida, que comienza a deshacerse al entrar en contacto con el agua. A medida que el tejido pierde su estructura, ella misma lo moldea sobre su cuerpo, revelando una silueta inspirada en los drapeados de la escultura helenística.</p><p>La intervención de Kanye West activa la transformación, pero es Kim quien construye su imagen final, invirtiendo la relación tradicional entre artista y musa.</p><p>Más allá del impacto visual, el proyecto plantea una reflexión sobre la autoría, la autonomía corporal y la transformación del cuerpo en obra de arte. La prenda deja de ser un objeto estático para convertirse en una performance donde el acto de vestirse es, en sí mismo, el proceso creativo.</p></article></div>";
+  var MAGEN = '<h2>MET GALA 2026 — COSTUME IS ART</h2><span class="role">Fashion Styling | Conceptualization, Creative Direction and Performance</span><p>Paula Calabrese × Guillermo Alcaide</p><p>This styling proposal for Kim Kardashian reinterprets the Fashion is Art concept of the 2026 Met Gala, exploring the relationship between the body, classical sculpture and performative fashion.</p><p>Inspired by the Winged Victory of Samothrace, the wet-drapery sculptural technique and the aesthetic universe of Di Petsa, the proposal stages a live transformation: Kim appears wrapped in a rigid textile structure, conceived as a chrysalis, which begins to dissolve on contact with water. As the fabric loses its structure, she herself moulds it onto her body, revealing a silhouette inspired by the drapery of Hellenistic sculpture.</p><p>Kanye West triggers the transformation, but it is Kim who builds her final image, inverting the traditional relationship between artist and muse.</p><p>Beyond the visual impact, the project reflects on authorship, bodily autonomy and the transformation of the body into a work of art. The garment stops being a static object and becomes a performance in which the act of getting dressed is, in itself, the creative process.</p>';
+  var MAGES = null;
+  var MAGMENU = { es: ['Archivo', 'Edición', 'Ver', 'Reproducir', 'Herramientas', 'Ayuda'], en: ['File', 'Edit', 'View', 'Play', 'Tools', 'Help'] };
+  function magLang(w) {
+    var en = curLang === 'en', box = $('.wb.mag', w); if (!box) return;
+    var art = $('.mgtext .card', box); if (!art) return;
+    if (MAGES === null) MAGES = art.innerHTML;
+    art.innerHTML = en ? MAGEN : MAGES;
+    box.lang = en ? 'en' : 'es';
+    Array.prototype.forEach.call(box.querySelectorAll('.mmenu span'), function (e, i) { e.textContent = MAGMENU[en ? 'en' : 'es'][i]; });
+    var d = $('.iebar b', box); if (d) d.textContent = en ? 'Address' : 'Dirección';
+  }
   function magBody(p) {
     return '<div class="wb mag" lang="es"><div class="mmenu"><span>Archivo</span><span>Edición</span><span>Ver</span><span>Reproducir</span><span>Herramientas</span><span>Ayuda</span></div><div class="iebar"><span class="iebt">◀</span><span class="iebt">▶</span><span class="ieadr"><b>Dirección</b><i>https://www.paulacalabrese.com/estilismo-met-gala</i></span><span class="iego">Ir</span></div>' + MAGHTML + '</div>';
   }
@@ -1838,7 +1850,7 @@ html, body { background: #3a6ea5; }
     if (p.paint) return h.slice(0, h.indexOf('<div class="wb')) + paintBody(p);
     if (p.mfw) return h.slice(0, h.indexOf('<div class="wb')) + mfwBody(p);
     if (p.float) return h.slice(0, h.indexOf('<div class="wb')).replace(/<span class="seg">.*?<\/span>/, '') + floatBody(p);
-    if (p.mag) return h.slice(0, h.indexOf('<div class="wb')).replace(/<span class="seg">.*?<\/span>/, '') + magBody(p);
+    if (p.mag) return h.slice(0, h.indexOf('<div class="wb')) + magBody(p);
     if (p.video) return h.slice(0, h.indexOf('<div class="wb')).replace(p.id === 'hune' ? /$^/ : /<span class="seg">.*?<\/span>/, '') + videoBody(p);
     if (p.strip) return h.slice(0, h.indexOf('<div class="wb')) + stripBody(p);
     if (p.kids) return h.slice(0, h.indexOf('<div class="wb')) + kidsBody(p);
@@ -1883,7 +1895,7 @@ html, body { background: #3a6ea5; }
     var hs = $('.wb.strip:not(.one)', w); if (hs) hArrows(hs, w);
     var vtx = $('.wb.vtxt', w); if (vtx) vtx.addEventListener('scroll', function () { var h = $('.vhint', w); if (h) h.style.display = vtx.scrollTop > 40 ? 'none' : ''; });
     var fbx = $('.wb.float', w); if (fbx) wireFloat(fbx);
-    if (p.mag) wireMag(w);
+    if (p.mag) { wireMag(w); w._plang = function () { magLang(w); }; magLang(w); }
     if (p.mfw) wireMfw(w);
     if (p.id === 'hune') wireHune(w);
     if (p.paint) wirePaint(w, p);
